@@ -14,6 +14,9 @@ namespace RedditBot
 	{
 		static void Main(string[] args)
 		{
+			/// <summary>
+			/// Simple reddit bot that replies to comments.
+			/// </summary>
 			var reddit = new Reddit();
 			var user = reddit.LogIn("BotKazy", "thisisapassword");
 			var subreddit = reddit.GetSubreddit("/r/test");
