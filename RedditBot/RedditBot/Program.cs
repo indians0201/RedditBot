@@ -10,42 +10,45 @@ using RedditSharp.Things;
 
 namespace RedditBot
 {
-	class Program
-	{
-		static void Main(string[] args)
-		{
-			/// <summary>
-			/// Simple reddit bot that replies to comments.
-			/// </summary>
-			var reddit = new Reddit();
-			var user = reddit.LogIn("BotKazy", "thisisapassword");
-			var subreddit = reddit.GetSubreddit("/r/test");
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /// <summary>
+            /// Simple reddit bot that replies to comments.
+            /// </summary>
+            var reddit = new Reddit();
+            var user = reddit.LogIn("BotKazy", "thisisapassword");
+            var subreddit = reddit.GetSubreddit("/r/test");
 
-			foreach (var post in subreddit.New.Take(25))
-			{
-				Console.WriteLine("THREAD : {0}", post.Title);
-				if (post.Title == "Test")
-				{
-					try
-					{
-						foreach (var comment in post.Comments)
-						{
-							if (comment.Body.Contains("Kazy"))
-							{
-								using (WebClient client = new WebClient())
-								{
-									comment.Reply("Kazy is a bot.");
-									Thread.Sleep(5000);
-								}
-							}
-						}
-					}
-					catch (Exception e)
-					{
-						Console.WriteLine("Exception: {0}", e.Message);
-					}
-				}
-			}
-		}
-	}
+            foreach (var post in subreddit.New.Take(25))
+            {
+                Console.WriteLine("THREAD : {0}", post.Title);
+                if (post.Title == "Test")
+                {
+                    try
+                    {
+                        foreach (var comment in post.Comments)
+                        {
+                            if (comment.Body.Contains("Kazy") || comment.Body.Contains("kazy"))
+                                if (comment.Author != "BotKazy")
+
+                                {
+                                    using (WebClient client = new WebClient())
+                                    {
+                                        comment.Reply("[Kazy is a bot](https://play.esea.net/users/727731)");
+
+                                        Thread.Sleep(5000);
+                                    }
+                                }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Exception: {0}", e.Message);
+                    }
+                }
+            }
+        }
+    }
 }
