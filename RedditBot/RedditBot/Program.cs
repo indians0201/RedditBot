@@ -39,6 +39,7 @@ namespace RedditBot
                                         comment.Reply("[Kazy is a bot](https://play.esea.net/users/727731)");
 
                                         Thread.Sleep(5000);
+                                        //penis
                                     }
                                 }
                         }
